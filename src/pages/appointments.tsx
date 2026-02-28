@@ -24,6 +24,7 @@ import {
   appointments as initialData,
   type Appointment,
 } from "@/data/appointments";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 function formatDate(dateString: string) {
   const date = new Date(dateString);
@@ -71,7 +72,10 @@ function statusLabel(status: string) {
 }
 
 export default function Appointments() {
-  const [data, setData] = useState<Appointment[]>(initialData);
+  const [data, setData] = useLocalStorage<Appointment[]>(
+    "appointments",
+    initialData,
+  );
 
   const [patientName, setPatientName] = useState("");
   const [doctor, setDoctor] = useState("");
@@ -81,7 +85,7 @@ export default function Appointments() {
   function handleCreate() {
     if (!patientName || !doctor || !value || !date) return;
 
-    const numericValue = Number(value.replace(/\D/g, "")) / 100;
+    const numericValue = Number(value.replaceAll(/\D/g, "")) / 100;
 
     const newAppointment: Appointment = {
       id: crypto.randomUUID(),
@@ -93,7 +97,7 @@ export default function Appointments() {
       status: "scheduled",
     };
 
-    setData((prev) => [...prev, newAppointment]);
+    setData([...data, newAppointment]);
 
     setPatientName("");
     setDoctor("");
