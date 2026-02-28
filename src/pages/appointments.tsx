@@ -6,11 +6,11 @@ import {
   TableHead,
   TableBody,
   TableCell,
-} from "../components/ui/table";
+} from "@/components/ui/table";
 
-import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
@@ -18,12 +18,12 @@ import {
   DialogTitle,
   DialogFooter,
   DialogTrigger,
-} from "../components/ui/dialog";
+} from "@/components/ui/dialog";
 
 import {
   appointments as initialData,
   type Appointment,
-} from "../data/appointments";
+} from "@/data/appointments";
 
 function formatDate(dateString: string) {
   const date = new Date(dateString);
@@ -102,7 +102,7 @@ export default function Appointments() {
   }
 
   function handleValueChange(input: string) {
-    const numeric = input.replace(/\D/g, "");
+    const numeric = input.replaceAll(/\D/g, "");
     const number = Number(numeric) / 100;
 
     setValue(
