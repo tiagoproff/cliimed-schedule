@@ -1,22 +1,9 @@
-export type AppointmentStatus =
-  | "scheduled"
-  | "completed"
-  | "canceled"
-
-export interface Appointment {
-  id: string
-  patientName: string
-  date: string
-  doctor: string
-  specialty: string
-  value: number
-  status: AppointmentStatus
-}
+import type { Appointment } from "@/types/Appointment";
 
 export const appointments: Appointment[] = [
   {
     id: "1",
-    patientName: "Maria Oliveira",
+    name: "Maria Oliveira",
     date: "2026-03-02T14:30:00",
     doctor: "Dr. Carlos Silva",
     specialty: "Cardiologia",
@@ -25,7 +12,7 @@ export const appointments: Appointment[] = [
   },
   {
     id: "2",
-    patientName: "João Santos",
+    name: "João Santos",
     date: "2026-03-01T09:00:00",
     doctor: "Dra. Ana Souza",
     specialty: "Dermatologia",
@@ -34,11 +21,11 @@ export const appointments: Appointment[] = [
   },
   {
     id: "3",
-    patientName: "Fernanda Lima",
+    name: "Fernanda Lima",
     date: "2026-03-03T16:15:00",
     doctor: "Dr. Pedro Alves",
     specialty: "Ortopedia",
     value: 500,
     status: "canceled",
   },
-]
+];
