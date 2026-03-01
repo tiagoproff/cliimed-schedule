@@ -23,7 +23,6 @@ export default function DateInput({ name, placeholder }: DateInputProps) {
       type="datetime-local"
       min={getMinDateTime()}
       max={getMaxDateTime()}
-      step={1800}
     />
   );
 }

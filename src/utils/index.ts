@@ -14,15 +14,9 @@ export const dateIsOnRange = (value: string) => {
   const dateObj = new Date(value);
 
   const hour = dateObj.getHours();
-  const minutes = dateObj.getMinutes();
 
   if (hour < 8 || hour >= 18) {
     console.log("Horário permitido apenas entre 08:00 e 18:00");
-    return;
-  }
-
-  if (minutes !== 0 && minutes !== 30) {
-    console.log("Apenas intervalos de 30 minutos são permitidos");
     return;
   }
 
@@ -30,14 +24,17 @@ export const dateIsOnRange = (value: string) => {
 };
 
 function formatCurrency(value: number) {
-  const numeric = value.toString().replaceAll(/\D/g, "");
-
-  value = Number(numeric) / 100;
+  const valueFormatted = formatToNumberValue(String(value), 2);
 
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(value);
+  }).format(valueFormatted);
+}
+
+export function formatToNumberValue(value: string, decimalPlaces: number = 2) {
+  const numeric = value.toString().replaceAll(/\D/g, "");
+  return Number(numeric) / Math.pow(10, decimalPlaces);
 }
 
 function statusVariant(status: string) {
